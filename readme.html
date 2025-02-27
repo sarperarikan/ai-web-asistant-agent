@@ -1,0 +1,144 @@
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Web Assistant - Kullanım Kılavuzu</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            padding: 20px;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        h1, h2, h3, h4 {
+            color: #4a90e2;
+        }
+        code {
+            background: #e8e8e8;
+            padding: 2px 4px;
+            border-radius: 4px;
+            font-size: 90%;
+        }
+        pre {
+            background: #e8e8e8;
+            padding: 10px;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+        .section {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>AI Web Assistant - Kullanım Kılavuzu</h1>
+
+    <div class="section">
+        <h2>1. Giriş</h2>
+        <p>
+            AI Web Assistant, kullanıcının girdiği görev (task) içeriğine göre web sayfalarında otomatik işlemler gerçekleştiren bir uygulamadır. 
+            Bu uygulama, OpenAI'nin GPT-4 modelini kullanarak web üzerinde belirlenen görevleri yerine getirir. 
+        </p>
+    </div>
+
+    <div class="section">
+        <h2>2. Gereksinimler</h2>
+        <ul>
+            <li>Python 3.x</li>
+            <li>OpenAI API Key</li>
+            <li>Aşağıdaki Python kütüphaneleri:
+                <ul>
+                    <li>wxPython</li>
+                    <li>asyncio</li>
+                    <li>langchain_openai</li>
+                    <li>dotenv</li>
+                    <li>browser_use</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>3. Kurulum</h2>
+        <h3>3.1 OpenAI API Key Alma</h3>
+        <p>
+            OpenAI platformuna gidin: <a href="https://platform.openai.com" target="_blank">platform.openai.com</a> <br>
+            Giriş yapın ve API Key alın. <br>
+            <code>.env</code> dosyasının içerisine aşağıdaki satırı ekleyin:
+        </p>
+        <pre>OPENAI_API_KEY=your_api_key_here</pre>
+    </div>
+
+    <div class="section">
+        <h2>4. Kurulum ve Çalıştırma</h2>
+        <h3>4.1 Paket Kurulumu</h3>
+        <p>Gerekli paketleri kurmak için <code>install.bat</code> dosyasını çalıştırın:</p>
+        <pre>install.bat</pre>
+
+        <h3>4.2 Uygulamayı Çalıştırma</h3>
+        <p>Uygulamayı başlatmak için <code>run.bat</code> dosyasını çalıştırın:</p>
+        <pre>run.bat</pre>
+    </div>
+
+    <div class="section">
+        <h2>5. Arayüz ve Özellikler</h2>
+        <h3>5.1 Ana Menü ve Sekmeler</h3>
+        <ul>
+            <li><b>Agent:</b> Görevleri yapılandırmak ve çalıştırmak için kullanılır.</li>
+            <li><b>Task History:</b> Daha önce çalıştırılan görevlerin geçmişini gösterir.</li>
+        </ul>
+
+        <h3>5.2 Ana Araç Çubuğu</h3>
+        <ul>
+            <li><b>Run Task:</b> Mevcut görevi çalıştırır.</li>
+            <li><b>Stop Task:</b> Çalışan görevi durdurur.</li>
+            <li><b>Save:</b> Görev yapılandırmasını kaydeder.</li>
+            <li><b>Load:</b> Daha önce kaydedilmiş görev yapılandırmasını yükler.</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>6. Klavye Kısayolları</h2>
+        <table border="1" cellpadding="8">
+            <tr>
+                <th>Kısayol</th>
+                <th>İşlev</th>
+            </tr>
+            <tr>
+                <td>Ctrl+R</td>
+                <td>Görevi çalıştırır</td>
+            </tr>
+            <tr>
+                <td>Ctrl+T</td>
+                <td>Çalışan görevi durdurur</td>
+            </tr>
+            <tr>
+                <td>Ctrl+E</td>
+                <td>Görev geçmişini dışa aktarır</td>
+            </tr>
+            <tr>
+                <td>Ctrl+S</td>
+                <td>Görev yapılandırmasını kaydeder</td>
+            </tr>
+            <tr>
+                <td>Ctrl+O</td>
+                <td>Görev yapılandırmasını yükler</td>
+            </tr>
+                <td>Alt+1</td>
+                <td>Agent sekmesini görüntüler</td>
+            </tr>
+            <tr>
+                <td>Alt+2</td>
+                <td>History sekmesini görüntüler</td>
+            </tr>
+            <tr>
+                <td>Alt+F4</td>
+                <td>Uygulamadan çıkış yapar</td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
