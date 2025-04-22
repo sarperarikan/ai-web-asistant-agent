@@ -1,0 +1,26 @@
+# FastAPI & ASGI server
+fastapi
+uvicorn[standard]
+
+# Database & ORM
+sqlalchemy
+
+# Settings & validation
+pydantic
+pydantic-settings
+python-dotenv
+email-validator
+
+# Templating & file serving
+jinja2
+aiofiles
+python-multipart
+
+# Auth (JWT + hashing), if you use auth.py later
+python-jose[cryptography]
+passlib[bcrypt]
+
+# LLM & browser automation
+langchain-google-genai
+browser-use
+playwright

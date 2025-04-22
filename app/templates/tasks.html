@@ -1,0 +1,145 @@
+{# app/templates/tasks.html #}
+{% extends "layout.html" %}
+
+{% block title %}Görevlerim – AgenticApp{% endblock %}
+
+{% block head %}
+  {{ super() }}
+  <!-- Bootstrap Icons (opsiyonel) -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
+    rel="stylesheet"
+  />
+  <style>
+    .log-area {
+      height: 300px;
+      overflow-y: auto;
+      white-space: pre-wrap;
+      background: #f8f9fa;
+      padding: 1rem;
+      border: 1px solid #dee2e6;
+      border-radius: 0.25rem;
+    }
+  </style>
+{% endblock %}
+
+{% block content %}
+  <h1 class="mb-4">Merhaba, {{ user.username }}!</h1>
+
+  <div class="row g-4">
+    <!-- Yeni Görev -->
+    <div class="col-md-4">
+      <div class="card shadow-sm" role="region" aria-labelledby="new-task-heading">
+        <div class="card-header bg-primary text-white">
+          <h2 id="new-task-heading" class="h6 mb-0">Yeni Görev Başlat</h2>
+        </div>
+        <div class="card-body">
+          <form action="/run_task" method="post" role="form" aria-label="Yeni görev">
+            <div class="mb-3">
+              <label for="task_text" class="form-label">Görev Metni</label>
+              <textarea
+                id="task_text"
+                name="task_text"
+                class="form-control"
+                rows="3"
+                placeholder="Örn: Bana yükselen türk hisse senetlerini listele"
+                required
+                aria-required="true"
+              ></textarea>
+            </div>
+            <button type="submit" class="btn btn-success w-100">Başlat</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Görev Listesi & İşlemler -->
+    <div class="col-md-8">
+      <div class="card shadow-sm mb-4" role="region" aria-labelledby="task-list-heading">
+        <div class="card-header bg-secondary text-white">
+          <h2 id="task-list-heading" class="h6 mb-0">Görev Listem</h2>
+        </div>
+        <div class="card-body">
+          {% if tasks %}
+            <ul class="list-group" aria-live="polite">
+              {% for task in tasks %}
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                  <div>
+                    <strong>{{ task.title }}</strong><br />
+                    <small class="text-muted">{{ task.created_at.strftime("%Y-%m-%d %H:%M") }}</small>
+                  </div>
+                  <div class="btn-group" role="group" aria-label="Görev işlemleri">
+                    <span class="badge bg-primary rounded-pill me-2">{{ task.status.value }}</span>
+
+                    <!-- Yeniden Çalıştır -->
+                    <form action="/rerun_task" method="post" class="me-2">
+                      <input type="hidden" name="task_id" value="{{ task.id }}" />
+                      <button
+                        type="submit"
+                        class="btn btn-outline-success btn-sm"
+                        aria-label="Yeniden çalıştır"
+                      >
+                        <i class="bi bi-arrow-clockwise"></i> Yeniden
+                      </button>
+                    </form>
+
+                    <!-- Sil -->
+                    <form
+                      action="/delete_task"
+                      method="post"
+                      onsubmit="return confirm('Bu görevi silmek istediğinize emin misiniz?');"
+                    >
+                      <input type="hidden" name="task_id" value="{{ task.id }}" />
+                      <button
+                        type="submit"
+                        class="btn btn-outline-danger btn-sm"
+                        aria-label="Görevi sil"
+                      >
+                        <i class="bi bi-trash"></i> Sil
+                      </button>
+                    </form>
+                  </div>
+                </li>
+              {% endfor %}
+            </ul>
+          {% else %}
+            <p>Henüz görev eklemediniz.</p>
+          {% endif %}
+        </div>
+      </div>
+
+      <!-- Log Geçmişi -->
+      <div class="card shadow-sm" role="region" aria-labelledby="log-history-heading">
+        <div class="card-header bg-info text-white">
+          <h2 id="log-history-heading" class="h6 mb-0">Log Geçmişi</h2>
+        </div>
+        <div
+          class="card-body log-area"
+          role="log"
+          aria-live="polite"
+          aria-atomic="false"
+        >
+          {% if logs %}
+            {% for entry in logs %}
+              {{ entry }}<br />
+            {% endfor %}
+          {% else %}
+            <p>Log kaydı bulunamadı.</p>
+          {% endif %}
+        </div>
+        <div class="card-footer text-end">
+          <form action="/clear_history" method="post" class="d-inline">
+            <button type="submit" class="btn btn-outline-danger btn-sm">
+              Geçmişi Temizle
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block scripts %}
+  {{ super() }}
+  <!-- Eğer özel script lazım ise buraya ekleyin -->
+{% endblock %}

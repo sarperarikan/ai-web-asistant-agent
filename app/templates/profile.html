@@ -1,0 +1,45 @@
+{# app/templates/profile.html #}
+{% extends "layout.html" %}
+
+{% block title %}Profilim – AgenticApp{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-md-6">
+    <div class="card shadow-sm" role="region" aria-labelledby="profile-heading">
+      <div class="card-header bg-primary text-white">
+        <h2 id="profile-heading" class="h5 mb-0">Kullanıcı Bilgilerim</h2>
+      </div>
+      <div class="card-body">
+        <dl class="row">
+          <dt class="col-sm-4">Kullanıcı Adı</dt>
+          <dd class="col-sm-8">{{ user.username }}</dd>
+
+          <dt class="col-sm-4">E‑posta</dt>
+          <dd class="col-sm-8">{{ user.email }}</dd>
+
+          <dt class="col-sm-4">Rol</dt>
+          <dd class="col-sm-8">{{ user.role.value }}</dd>
+
+          <dt class="col-sm-4">Kayıt Tarihi</dt>
+          <dd class="col-sm-8">{{ user.created_at.strftime("%Y-%m-%d %H:%M") }}</dd>
+        </dl>
+        <hr />
+        <a
+          href="/tasks"
+          class="btn btn-outline-primary w-100"
+          role="button"
+          aria-label="Görevlerim sayfasına git"
+        >
+          Görevlerim
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+  {{ super() }}
+  {# Eğer bu sayfaya özel script gerekiyorsa buraya ekleyin #}
+{% endblock %}
